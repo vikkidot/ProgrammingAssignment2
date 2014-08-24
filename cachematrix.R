@@ -9,7 +9,7 @@ makeCacheMatrix <- function(x = matrix(),...) {
         ##Initializaing the value of the matrix
         z <- NULL
         set<- function(y){
-## Set the values of x and z in Global Env , so that to acces ooutside this function
+        ## Set the values of x and z in Global Env , so that to acces ooutside this function
                 x<<- y 
                 z<<- NULL
         }
@@ -26,7 +26,7 @@ makeCacheMatrix <- function(x = matrix(),...) {
 }
 
 ## This funtion will return the  cached inverse of the matrix if available,
-## else it will inverse the original matrix and retrun it.
+## else it will inverse the original matrix and return it.
 
 cacheSolve <- function(x=matrix(), ...) {
         ## Return a matrix that is the inverse of 'x'
