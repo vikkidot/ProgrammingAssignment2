@@ -1,41 +1,46 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The R file consists of 2 functions, it calucates the inverse of the fucntion and stores it
 
-## Write a short comment describing this function
+## makeCacheMatrix function accepts a matrix (I have put return arguments for few validations)
+## when called it stores the matrix and its cached inverse in list
+
 
 makeCacheMatrix <- function(x = matrix(),...) {
         
+        ##Initializaing the value of the matrix
         z <- NULL
         set<- function(y){
-                x<<- y
+                ## Set the values of x and z in Global Env , so that to acces ooutside this function
+                x<<- y 
                 z<<- NULL
         }
         
         get<- function()
                 x
-
+        ## Set the Inverse of Matric locally
         setinverse <- function(solve) z<<- solve 
         getmat<- function() z
-                
+        ## Store all the values in list for local access                
         list(set = set ,get = get, setinverse = setinverse, getmat = getmat)
         
 
 }
 
-## Write a short comment describing this function
+## This funtion will get teh cached values of ibverse of the matrix
 
 cacheSolve <- function(x=matrix(), ...) {
         ## Return a matrix that is the inverse of 'x'
-
-        z <- x$getmat()
-        if(is.null(z)) {
+        ## Access prevous function to get the value of matrix, 
+        ##if not NULL then return inveretd matrix 
+        ##else get the original matrtix from global values and invert
+        z <- x$getmat() 
+        if(!is.null(z)) {
                 message("getting cached data")
                 return(z)
         }
         matrix <- x$get()
         z <- solve(matrix, ...)
         x$setinverse(z)
-        z
+        z ## return the matrix after inverting from global value
 }
 
 
